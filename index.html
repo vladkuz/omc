@@ -3,23 +3,28 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>OmC-2</title>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="js/resources.js"></script>
 <script type="text/javascript" src="js/game.js"></script>
 
 <script type="text/javascript">
 
-window.onload = function () {
-	game.start();
-	
-	//test:
-	for(var i=0;i<15;) {
-		document.body.appendChild(game.resources.items[i++].getImage());
-	}
-};
+    $(function () {
+        var c = $('#container');
+
+        game.start(c);
+
+        //test:
+        for (var i = 0; i < 15;) {
+            document.body.appendChild(game.resources.items[i++].getImage());
+        }
+    });
 </script>
 
 </head>
 
 <body>
+    <div id="container"></div>
 </body>
 </html>

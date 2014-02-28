@@ -1,11 +1,14 @@
 // Loading... page
 var loadingPage = function (g) {
-	this.show = function () {
-		
-	};
+    this.game = g;
+
+    this.show = function () {
+        var
+            c = this.game.container;
+    };
 	
 	this.showProgress = function (p) {
-		console.log('Percentage ' + p + '%');
+		this.game.log('Percentage ' + p + '%');
 	};
 	
 	this.hide = function () {
@@ -15,11 +18,14 @@ var loadingPage = function (g) {
 
 // Menu page
 var menuPage = function (g) {
-	this.show = function (choicesArray, callback) {
-		// Present choices
+    this.game = g;
+    this.show = function (choicesArray, callback) {
+        var
+            c = this.game.container;
+        // Present choices
 		// ...
 		var choiceId = ~~(Math.random()*choicesArray.length);
-		console.log(choiceId);
+		this.game.log(choiceId);
 		callback(choicesArray[choiceId]);
 	};
 };
@@ -27,9 +33,12 @@ var menuPage = function (g) {
 
 // Game page
 var gamePage = function (g) {
-	this.game = g;
-	this.show = function (callback) {
-		// ...
+    this.game = g;
+
+    this.show = function (callback) {
+	    var
+            c = this.game.container;
+	    // ...
 		// show game play
 		// ...
 		callback({});
@@ -48,8 +57,11 @@ var game = {
 	
 	pages: {},
 	
+    container: null,
 	
-	start: function () {
+    start: function (container) {
+
+        this.container = container;
 		// do loading
 		var 
 			that = this,
@@ -63,7 +75,7 @@ var game = {
 		
 		this.resources.load(
 				function (p) {
-					loadPage.showProgress(p);
+					loadPage.showProgress(~~p);
 				},
 				function() {
 					loadPage.hide();
